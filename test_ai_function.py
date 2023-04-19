@@ -12,20 +12,18 @@ openai.api_key = keys.OPENAI_API_KEY
 # Run all tests, print the results, and return the number of failed tests
 def run_tests(model):
     test_functions = [test_1, test_2, test_3, test_4, test_5, test_6]
-    test_names = [
-        "Generate fake people",
-        "Generate Random Password",
-        "Calculate area of triangle",
-        "Calculate the nth prime number",
-        "Encrypt text",
-        "Find missing numbers"
-]
+        test_names = [
+            "Generate fake people",
+            "Generate Random Password",
+            "Calculate area of triangle",
+            "Calculate the nth prime number",
+            "Encrypt text",
+            "Find missing numbers"
+    ]
     failed_tests = []
 
-    i = 0
-    for test in test_functions:
+    for i, test in enumerate(test_functions):
         print(f"=-=-=- Running test: {test.__name__} - {test_names[i]} with model {model} -=-=-=")
-        i += 1
         try:
             test(model)
             print(f"{test.__name__}: PASSED")
@@ -103,7 +101,9 @@ def test_3(model):
 
     # Assert the result is equal to the expected area of the triangle
     expected_area = (float(args[0]) * float(args[1])) / 2
-    print("Testing if the result is equal to the expected area of the triangle, which is: " + str(expected_area))
+    print(
+        f"Testing if the result is equal to the expected area of the triangle, which is: {str(expected_area)}"
+    )
     assert float(result_string) == pytest.approx(expected_area)
 
 # Ai function test 4
@@ -126,7 +126,9 @@ def test_4(model):
 
     # Assert the result is equal to the expected nth prime number
     expected_prime_number = 29
-    print("Testing if the result is equal to the expected nth prime number, which is: " + str(expected_prime_number))
+    print(
+        f"Testing if the result is equal to the expected nth prime number, which is: {expected_prime_number}"
+    )
     assert int(result_string) == expected_prime_number
 
 # Ai function test 5
